@@ -66,14 +66,13 @@ public final class JMHParser implements Parser {
     }
 
     /**
-     * Use this method to check if the class has any JMH import statements. If it does not, it is probably not a
-     * JMH benchmarking-related class.
+     * Use this method to check if the class has any JMH import statements.
      *
      * @return      true if any import statement containing jmh exists, otherwise false
      */
     public boolean hasJMHImport() {
-        for (ImportDeclaration specificImport : compilationUnit.getImports()) {
-            if (specificImport.getNameAsString().toUpperCase().contains(ParserType.JMH.name())) {
+        for (ImportDeclaration declaration : compilationUnit.getImports()) {
+            if (declaration.getNameAsString().toUpperCase().contains(ParserType.JMH.name())) {
                 return true;
             }
         }
@@ -107,7 +106,7 @@ public final class JMHParser implements Parser {
 
     public List<String> methodAnnotations(String methodDeclaration) {
         Optional<MethodDeclaration> declaration = findMethodDeclaration(methodDeclaration);
-        return declaration.isPresent() ? declaration.get().getAnnotations().stream().map(AnnotationExpr::getNameAsString).collect(collectingAndThen(toList(), Collections::unmodifiableList)) : Arrays.asList();
+        return declaration.isPresent() ? declaration.get().getAnnotations().stream().map(AnnotationExpr::getNameAsString).collect(collectingAndThen(toList(), Collections::unmodifiableList)) : Collections.emptyList();
     }
 
     public List<String> allMethodCallsWithinMethod(String methodDeclaration) {
@@ -116,7 +115,7 @@ public final class JMHParser implements Parser {
 
     public List<String> methodParameterTypes(String methodDeclaration) {
         Optional<MethodDeclaration> declaration = findMethodDeclaration(methodDeclaration);
-        return declaration.isPresent() ? declaration.get().getSignature().getParameterTypes().stream().map(Type::asString).collect(collectingAndThen(toList(), Collections::unmodifiableList)) : Arrays.asList();
+        return declaration.isPresent() ? declaration.get().getSignature().getParameterTypes().stream().map(Type::asString).collect(collectingAndThen(toList(), Collections::unmodifiableList)) : Collections.emptyList();
     }
 
     public String methodReturnType(String methodDeclaration) {

@@ -29,8 +29,8 @@ import static java.util.stream.Collectors.toList;
 public final class JMHParser implements Parser {
     private CompilationUnit compilationUnit;
     private String fileName;
-    private final List<MethodDeclaration> methodDeclarations = new ArrayList<>();
     private final Map<String, List<String>> methodCalls = new HashMap<>();
+    private final Map<String, MethodDeclaration> declarationMappings = new HashMap<>();
 
     /**
      *  Receives the path to a revision of a file and loads that file in the parser. Then parses the class into
@@ -59,8 +59,8 @@ public final class JMHParser implements Parser {
     }
 
     private void clearData() {
-        methodDeclarations.clear();
         methodCalls.clear();
+        declarationMappings.clear();
     }
 
     /**
@@ -86,24 +86,20 @@ public final class JMHParser implements Parser {
     }
 
     public List<String> allMethodNames() {
-        return methodDeclarations.stream().map(MethodDeclaration::getNameAsString).collect(collectingAndThen(toList(), Collections::unmodifiableList));
+        return declarationMappings.values().stream().map(MethodDeclaration::getNameAsString).collect(collectingAndThen(toList(), Collections::unmodifiableList));
     }
 
-    public List<String> allMethodDeclarations() {
-        return methodDeclarations.stream().map(MethodDeclaration::getDeclarationAsString).collect(collectingAndThen(toList(), Collections::unmodifiableList));
+    public Set<String> allMethodDeclarations() {
+        return Collections.unmodifiableSet(declarationMappings.keySet());
     }
 
     public String methodBody(String methodDeclaration) {
-        Optional<MethodDeclaration> declaration = findMethodDeclaration(methodDeclaration);
+        Optional<MethodDeclaration> declaration = Optional.ofNullable(declarationMappings.get(methodDeclaration));
         return declaration.isPresent() ? declaration.get().getDeclarationAsString() : "";
     }
 
-    private Optional<MethodDeclaration> findMethodDeclaration(String methodDeclaration) {
-        return methodDeclarations.stream().filter(m -> m.getDeclarationAsString().equals(methodDeclaration)).findFirst();
-    }
-
     public List<String> methodAnnotations(String methodDeclaration) {
-        Optional<MethodDeclaration> declaration = findMethodDeclaration(methodDeclaration);
+        Optional<MethodDeclaration> declaration = Optional.ofNullable(declarationMappings.get(methodDeclaration));
         return declaration.isPresent() ? declaration.get().getAnnotations().stream().map(AnnotationExpr::getNameAsString).collect(collectingAndThen(toList(), Collections::unmodifiableList)) : Collections.emptyList();
     }
 
@@ -112,12 +108,12 @@ public final class JMHParser implements Parser {
     }
 
     public List<String> methodParameterTypes(String methodDeclaration) {
-        Optional<MethodDeclaration> declaration = findMethodDeclaration(methodDeclaration);
+        Optional<MethodDeclaration> declaration = Optional.ofNullable(declarationMappings.get(methodDeclaration));
         return declaration.isPresent() ? declaration.get().getSignature().getParameterTypes().stream().map(Type::asString).collect(collectingAndThen(toList(), Collections::unmodifiableList)) : Collections.emptyList();
     }
 
     public String methodReturnType(String methodDeclaration) {
-        Optional<MethodDeclaration> declaration = findMethodDeclaration(methodDeclaration);
+        Optional<MethodDeclaration> declaration = Optional.ofNullable(declarationMappings.get(methodDeclaration));
         return declaration.isPresent() ? declaration.get().getType().asString() : "";
     }
 
@@ -129,7 +125,7 @@ public final class JMHParser implements Parser {
         public void visit(MethodDeclaration method, JMHParser parser) {
             String methodDeclaration = method.getDeclarationAsString();
 
-            parser.methodDeclarations.add(method);
+            parser.declarationMappings.put(methodDeclaration, method);
             parser.methodCalls.put(methodDeclaration, new ArrayList<>());
             method.accept(new MethodCallVisitor(), parser.methodCalls.get(methodDeclaration));
         }

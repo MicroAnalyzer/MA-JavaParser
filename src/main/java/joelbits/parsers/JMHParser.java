@@ -8,11 +8,10 @@ import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+import com.github.javaparser.utils.Log;
 import com.google.auto.service.AutoService;
 import joelbits.parsers.spi.Parser;
 import joelbits.parsers.types.ParserType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,7 +27,6 @@ import static java.util.stream.Collectors.toList;
  */
 @AutoService(Parser.class)
 public final class JMHParser implements Parser {
-    private static final Logger log = LoggerFactory.getLogger(JMHParser.class);
     private CompilationUnit compilationUnit;
     private String fileName;
     private final List<MethodDeclaration> methodDeclarations = new ArrayList<>();
@@ -48,15 +46,15 @@ public final class JMHParser implements Parser {
         clearData();
 
         new MethodVisitor().visit(compilationUnit, this);
-        log.info("Parsing of " + fileName + " completed");
+        Log.info("Parsing of " + fileName + " completed");
     }
 
     private void loadFile(String filePath) {
         try (FileInputStream in = new FileInputStream(filePath)) {
             compilationUnit = JavaParser.parse(in);
-            log.info("Loaded " + fileName);
+            Log.info("Loaded " + fileName);
         } catch (IOException e) {
-            log.error(e.toString(), e);
+            Log.error(e.toString(), e);
         }
     }
 

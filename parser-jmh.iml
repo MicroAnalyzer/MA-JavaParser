@@ -13,6 +13,5 @@
     <orderEntry type="library" name="Maven: com.google.auto.service:auto-service:1.0-rc3" level="project" />
     <orderEntry type="library" name="Maven: com.google.auto:auto-common:0.3" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:19.0" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
   </component>
 </module>

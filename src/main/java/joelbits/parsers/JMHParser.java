@@ -3,9 +3,12 @@ package joelbits.parsers;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.ImportDeclaration;
+import com.github.javaparser.ast.NodeList;
+import com.github.javaparser.ast.body.CallableDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.Log;
@@ -78,7 +81,9 @@ public final class JMHParser implements Parser {
     }
 
     public List<String> allImports() {
-        return compilationUnit.getImports().stream().map(ImportDeclaration::getNameAsString).collect(collectingAndThen(toList(), Collections::unmodifiableList));
+        return compilationUnit.getImports().stream()
+                .map(ImportDeclaration::getNameAsString)
+                .collect(collectingAndThen(toList(), Collections::unmodifiableList));
     }
 
     public String fileName() {
@@ -86,7 +91,9 @@ public final class JMHParser implements Parser {
     }
 
     public List<String> allMethodNames() {
-        return declarationMappings.values().stream().map(MethodDeclaration::getNameAsString).collect(collectingAndThen(toList(), Collections::unmodifiableList));
+        return declarationMappings.values().stream()
+                .map(MethodDeclaration::getNameAsString)
+                .collect(collectingAndThen(toList(), Collections::unmodifiableList));
     }
 
     public Set<String> allMethodDeclarations() {
@@ -94,13 +101,21 @@ public final class JMHParser implements Parser {
     }
 
     public String methodBody(String methodDeclaration) {
-        Optional<MethodDeclaration> declaration = Optional.ofNullable(declarationMappings.get(methodDeclaration));
-        return declaration.isPresent() ? declaration.get().getDeclarationAsString() : "";
+        return Optional.ofNullable(declarationMappings.get(methodDeclaration))
+                .map(MethodDeclaration::getBody)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .map(BlockStmt::toString)
+                .orElse("");
     }
 
     public List<String> methodAnnotations(String methodDeclaration) {
-        Optional<MethodDeclaration> declaration = Optional.ofNullable(declarationMappings.get(methodDeclaration));
-        return declaration.isPresent() ? declaration.get().getAnnotations().stream().map(AnnotationExpr::getNameAsString).collect(collectingAndThen(toList(), Collections::unmodifiableList)) : Collections.emptyList();
+        List<AnnotationExpr> annotations = Optional.ofNullable(declarationMappings.get(methodDeclaration))
+                .map(MethodDeclaration::getAnnotations)
+                .orElse(new NodeList<>());
+        return annotations.isEmpty() ? Collections.emptyList() : annotations.stream()
+                .map(AnnotationExpr::getNameAsString)
+                .collect(collectingAndThen(toList(), Collections::unmodifiableList));
     }
 
     public List<String> allMethodCallsWithinMethod(String methodDeclaration) {
@@ -108,13 +123,20 @@ public final class JMHParser implements Parser {
     }
 
     public List<String> methodParameterTypes(String methodDeclaration) {
-        Optional<MethodDeclaration> declaration = Optional.ofNullable(declarationMappings.get(methodDeclaration));
-        return declaration.isPresent() ? declaration.get().getSignature().getParameterTypes().stream().map(Type::asString).collect(collectingAndThen(toList(), Collections::unmodifiableList)) : Collections.emptyList();
+        List<Type> parameterTypes = Optional.ofNullable(declarationMappings.get(methodDeclaration))
+                .map(MethodDeclaration::getSignature)
+                .map(CallableDeclaration.Signature::getParameterTypes)
+                .orElse(Collections.emptyList());
+        return parameterTypes.isEmpty() ?  Collections.emptyList() : parameterTypes.stream()
+                .map(Type::asString)
+                .collect(collectingAndThen(toList(), Collections::unmodifiableList));
     }
 
     public String methodReturnType(String methodDeclaration) {
-        Optional<MethodDeclaration> declaration = Optional.ofNullable(declarationMappings.get(methodDeclaration));
-        return declaration.isPresent() ? declaration.get().getType().asString() : "";
+        return Optional.ofNullable(declarationMappings.get(methodDeclaration))
+                .map(MethodDeclaration::getType)
+                .map(Type::asString)
+                .orElse("");
     }
 
     /**

@@ -36,24 +36,24 @@ public final class JMHParser implements Parser {
     private final Map<String, MethodDeclaration> declarationMappings = new HashMap<>();
 
     /**
-     *  Receives the path to a revision of a file and loads that file in the parser. Then parses the class into
-     *  more fine grained parts. The data is removed each time a new file is parsed in order to make a parser reusable
-     *  and reduce memory footprint.
+     *  Receives a revision of a file and loads that file in the parser. Then parses the class into more fine grained
+     *  parts. The data is removed each time a new file is parsed in order to make a parser reusable and reduce
+     *  memory footprint.
      *
-     * @param filePath    path to the current revision of the file to parse, e.g., c:\gitProjects\JCTools\JCTools\jctools-core/src/test/java/org/jctools/maps/nbhm_test/NBHM_Tester2.java
+     * @param file    current revision of the file to parse
      */
     @Override
-    public void parse(String filePath) {
-        this.fileName = new File(filePath).getName();
-        loadFile(filePath);
+    public void parse(File file) {
+        this.fileName = file.getName();
+        loadFile(file);
         clearData();
 
         new MethodVisitor().visit(compilationUnit, this);
         Log.info("Parsing of " + fileName + " completed");
     }
 
-    private void loadFile(String filePath) {
-        try (FileInputStream in = new FileInputStream(filePath)) {
+    private void loadFile(File file) {
+        try (FileInputStream in = new FileInputStream(file)) {
             compilationUnit = JavaParser.parse(in);
             Log.info("Loaded " + fileName);
         } catch (IOException e) {
@@ -72,12 +72,9 @@ public final class JMHParser implements Parser {
      * @return      true if any import statement containing jmh exists, otherwise false
      */
     public boolean hasJMHImport() {
-        for (ImportDeclaration declaration : compilationUnit.getImports()) {
-            if (declaration.getNameAsString().toUpperCase().contains(ParserType.JMH.name())) {
-                return true;
-            }
-        }
-        return false;
+        return compilationUnit.getImports().stream()
+                .map(ImportDeclaration::getNameAsString)
+                .anyMatch(i -> i.toUpperCase().contains(ParserType.JMH.name()));
     }
 
     public List<String> allImports() {

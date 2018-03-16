@@ -5,6 +5,13 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
+    <repositories>
+        <repository>
+            <id>localrepository</id>
+            <url>file://${basedir}/repo</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
@@ -28,7 +35,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>parser-jmh</finalName>
+                            <finalName>javaparser</finalName>
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>
@@ -48,6 +55,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>joelbits</groupId>
+            <artifactId>mining-model</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.javaparser</groupId>
             <artifactId>javaparser-core</artifactId>
             <version>3.5.5</version>
@@ -57,6 +69,12 @@
             <artifactId>auto-service</artifactId>
             <version>1.0-rc3</version>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>3.0</version>
         </dependency>
     </dependencies>
 </project>

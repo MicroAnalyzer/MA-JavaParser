@@ -1,4 +1,4 @@
-package joelbits.modules.preprocessing.parsers.utils;
+package joelbits.modules.preprocessing.plugins.utils;
 
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;

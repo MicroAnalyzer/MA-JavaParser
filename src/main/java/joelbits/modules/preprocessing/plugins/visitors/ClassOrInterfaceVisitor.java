@@ -1,32 +1,25 @@
-package joelbits.modules.preprocessing.parsers.visitors;
+package joelbits.modules.preprocessing.plugins.visitors;
 
 import com.github.javaparser.ast.body.BodyDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.google.inject.Guice;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier;
 import joelbits.model.ast.protobuf.ASTProtos.Declaration;
 import joelbits.model.ast.protobuf.ASTProtos.Method;
-import joelbits.modules.preprocessing.parsers.InjectionParserModule;
-import joelbits.modules.preprocessing.parsers.utils.ASTNodeCreator;
+import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class ClassOrInterfaceVisitor extends VoidVisitorAdapter<List<Declaration>> {
     private List<Declaration> namespaceDeclarations;
-    @Inject
-    private ASTNodeCreator astNodeCreator;
+    private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
 
-    public ClassOrInterfaceVisitor() {
-        Guice.createInjector(new InjectionParserModule()).injectMembers(this);
-    }
+    public ClassOrInterfaceVisitor() {}
 
     public ClassOrInterfaceVisitor(List<Declaration> namespaceDeclarations) {
         this.namespaceDeclarations = namespaceDeclarations;
-        Guice.createInjector(new InjectionParserModule()).injectMembers(this);
     }
 
     @Override

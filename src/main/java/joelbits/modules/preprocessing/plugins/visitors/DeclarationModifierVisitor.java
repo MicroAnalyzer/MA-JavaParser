@@ -1,26 +1,17 @@
-package joelbits.modules.preprocessing.parsers.visitors;
+package joelbits.modules.preprocessing.plugins.visitors;
 
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.google.inject.Guice;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier;
-import joelbits.modules.preprocessing.parsers.InjectionParserModule;
-import joelbits.modules.preprocessing.parsers.utils.ASTNodeCreator;
-import joelbits.modules.preprocessing.parsers.utils.TypeConverter;
+import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
+import joelbits.modules.preprocessing.plugins.utils.TypeConverter;
 
-import javax.inject.Inject;
 import java.util.List;
 
 public class DeclarationModifierVisitor extends VoidVisitorAdapter<List<Modifier>> {
-    @Inject
-    private ASTNodeCreator astNodeCreator;
-    @Inject
-    private TypeConverter typeConverter;
-
-    public DeclarationModifierVisitor() {
-        Guice.createInjector(new InjectionParserModule()).injectMembers(this);
-    }
+    private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
+    private final TypeConverter typeConverter = new TypeConverter();
 
     @Override
     public void visit(ClassOrInterfaceDeclaration declaration, List<Modifier> modifiers) {

@@ -1,4 +1,4 @@
-package joelbits.modules.preprocessing.parsers.visitors;
+package joelbits.modules.preprocessing.plugins.visitors;
 
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;

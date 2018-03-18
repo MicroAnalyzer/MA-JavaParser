@@ -1,20 +1,17 @@
-package joelbits.modules.preprocessing.parsers.visitors;
+package joelbits.modules.preprocessing.plugins.visitors;
 
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.google.inject.Guice;
 import joelbits.model.ast.protobuf.ASTProtos;
 import joelbits.model.ast.protobuf.ASTProtos.Method;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
 import joelbits.model.ast.protobuf.ASTProtos.Expression;
-import joelbits.modules.preprocessing.parsers.InjectionParserModule;
-import joelbits.modules.preprocessing.parsers.utils.ASTNodeCreator;
-import joelbits.modules.preprocessing.parsers.utils.TypeConverter;
+import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
+import joelbits.modules.preprocessing.plugins.utils.TypeConverter;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,14 +19,8 @@ import java.util.List;
  * A visitor parsing data from the loaded class on a method level.
  */
 public final class MethodVisitor extends VoidVisitorAdapter<List<Method>> {
-    @Inject
-    private ASTNodeCreator astNodeCreator;
-    @Inject
-    private TypeConverter typeConverter;
-
-    public MethodVisitor() {
-        Guice.createInjector(new InjectionParserModule()).injectMembers(this);
-    }
+    private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
+    private final TypeConverter typeConverter = new TypeConverter();
 
     @Override
     public void visit(MethodDeclaration method, List<Method> methods) {

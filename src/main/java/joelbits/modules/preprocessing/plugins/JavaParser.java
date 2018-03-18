@@ -1,4 +1,4 @@
-package joelbits.modules.preprocessing.parsers;
+package joelbits.modules.preprocessing.plugins;
 
 import com.github.javaparser.ast.*;
 import com.github.javaparser.utils.Log;
@@ -6,32 +6,25 @@ import static joelbits.model.ast.protobuf.ASTProtos.Namespace;
 import static joelbits.model.ast.protobuf.ASTProtos.Declaration;
 
 import com.google.auto.service.AutoService;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import joelbits.modules.preprocessing.parsers.spi.Parser;
-import joelbits.modules.preprocessing.parsers.types.ParserType;
-import joelbits.modules.preprocessing.parsers.utils.ASTNodeCreator;
-import joelbits.modules.preprocessing.parsers.visitors.*;
+import joelbits.modules.preprocessing.plugins.spi.MicrobenchmarkParser;
+import joelbits.modules.preprocessing.plugins.types.ParserType;
+import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
+import joelbits.modules.preprocessing.plugins.visitors.*;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
 
 /**
- * Load a Java file and parse it.
+ * Loads a Java file and parses its microbenchmarks.
  */
-@AutoService(Parser.class)
-public final class JavaParser implements Parser {
+@AutoService(MicrobenchmarkParser.class)
+public class JavaParser implements MicrobenchmarkParser {
     private CompilationUnit compilationUnit;
     private final List<String> imports = new ArrayList<>();
     private final List<Namespace> namespaces = new ArrayList<>();
     private final List<Declaration> nestedDeclarations = new ArrayList<>();
-    @Inject
-    private ASTNodeCreator astNodeCreator;
-
-    public JavaParser() {
-        Guice.createInjector(new InjectionParserModule()).injectMembers(this);
-    }
+    private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
 
     /**
      *  Receives a snapshot of a file and loads that file in the parser. Then parses the class into an AST.

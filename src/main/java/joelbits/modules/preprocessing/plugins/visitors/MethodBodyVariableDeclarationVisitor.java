@@ -1,30 +1,22 @@
-package joelbits.modules.preprocessing.parsers.visitors;
+package joelbits.modules.preprocessing.plugins.visitors;
 
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.google.inject.Guice;
 import joelbits.model.ast.protobuf.ASTProtos;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
 import joelbits.model.ast.protobuf.ASTProtos.Expression.ExpressionType;
-import joelbits.modules.preprocessing.parsers.InjectionParserModule;
-import joelbits.modules.preprocessing.parsers.utils.ASTNodeCreator;
+import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
 
-import javax.inject.Inject;
 import java.util.*;
 
 /**
  * A visitor for the variable declarations performed inside a specific method.
  */
 public final class MethodBodyVariableDeclarationVisitor extends VoidVisitorAdapter<List<ASTProtos.Expression>> {
-    @Inject
-    private ASTNodeCreator astNodeCreator;
-
-    public MethodBodyVariableDeclarationVisitor() {
-        Guice.createInjector(new InjectionParserModule()).injectMembers(this);
-    }
+    private ASTNodeCreator astNodeCreator = new ASTNodeCreator();
 
     @Override
     public void visit(VariableDeclarationExpr variableDeclarationExpr, List<ASTProtos.Expression> methodBodyVariableDeclarations) {

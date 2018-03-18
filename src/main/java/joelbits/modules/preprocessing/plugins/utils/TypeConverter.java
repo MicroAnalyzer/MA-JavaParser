@@ -1,34 +1,17 @@
-package joelbits.modules.preprocessing.parsers.utils;
+package joelbits.modules.preprocessing.plugins.utils;
 
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.expr.AnnotationExpr;
-import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MemberValuePair;
 import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
 import joelbits.model.ast.protobuf.ASTProtos;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier.ModifierType;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType;
-import joelbits.model.ast.protobuf.ASTProtos.Expression.ExpressionType;
 
 import java.util.*;
 
 public final class TypeConverter {
-    public ExpressionType getExpressionType(Expression expression) {
-        if (expression.isLiteralExpr()) {
-            return ExpressionType.LITERAL;
-        } else if (expression.isAssignExpr()) {
-            return ExpressionType.ASSIGN;
-        } else if (expression.isMethodCallExpr()) {
-            return ExpressionType.METHODCALL;
-        } else if (expression.isObjectCreationExpr()) {
-            return ExpressionType.NEW;
-        } else if (expression.isVariableDeclarationExpr()) {
-            return ExpressionType.VARIABLE_DECLARATION;
-        }
-
-        return ExpressionType.OTHER;
-    }
 
     public List<ASTProtos.Modifier> convertModifiers(EnumSet<Modifier> modifiers) {
         List<ASTProtos.Modifier> argumentModifiers = new ArrayList<>();
@@ -105,25 +88,5 @@ public final class TypeConverter {
             memberName = "";
         }
         return memberName;
-    }
-
-    /**
-     * Since some sources may have different ChangeTypes than used in the Protocol Buffer, they have to
-     * be mapped to corresponding ChangeType.
-     *
-     * @param type          the ChangeType of the parsed source
-     * @return              the ChangeType used in the Project Protocol Buffer message
-     */
-    public String convertChangeType(String type) {
-        switch(type.toUpperCase()) {
-            case "MODIFY":
-                return "MODIFIED";
-            case "ADD":
-                return "ADDED";
-            case "DELETE":
-                return "DELETED";
-            default:
-                return type.toUpperCase();
-        }
     }
 }

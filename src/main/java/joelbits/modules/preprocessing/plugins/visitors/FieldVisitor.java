@@ -1,28 +1,19 @@
-package joelbits.modules.preprocessing.parsers.visitors;
+package joelbits.modules.preprocessing.plugins.visitors;
 
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.google.inject.Guice;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
-import joelbits.modules.preprocessing.parsers.InjectionParserModule;
-import joelbits.modules.preprocessing.parsers.utils.ASTNodeCreator;
-import joelbits.modules.preprocessing.parsers.utils.TypeConverter;
+import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
+import joelbits.modules.preprocessing.plugins.utils.TypeConverter;
 
-import javax.inject.Inject;
 import java.util.List;
 
 public class FieldVisitor extends VoidVisitorAdapter<List<Variable>> {
-    @Inject
-    private ASTNodeCreator astNodeCreator;
-    @Inject
-    private TypeConverter typeConverter;
-
-    public FieldVisitor() {
-        Guice.createInjector(new InjectionParserModule()).injectMembers(this);
-    }
+    private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
+    private final TypeConverter typeConverter = new TypeConverter();
 
     @Override
     public void visit(FieldDeclaration field, List<Variable> fieldsInDeclaration) {

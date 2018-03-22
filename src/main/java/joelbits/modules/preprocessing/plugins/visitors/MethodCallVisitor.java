@@ -16,14 +16,14 @@ public final class MethodCallVisitor extends VoidVisitorAdapter<List<ASTProtos.E
     private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
 
     @Override
-    public void visit(MethodCallExpr methodCall, List<ASTProtos.Expression> methodInvocations) {
-        super.visit(methodCall, methodInvocations);
+    public void visit(MethodCallExpr methodCall, List<ASTProtos.Expression> methodBodyContent) {
+        super.visit(methodCall, methodBodyContent);
 
         List<ASTProtos.Expression> methodArguments = new ArrayList<>();
         for (Expression parameter : methodCall.getArguments()) {
             methodArguments.add(astNodeCreator.createMethodCallArgumentExpression(parameter.toString()));
         }
 
-        methodInvocations.add(astNodeCreator.createMethodCallExpression(methodCall, methodArguments));
+        methodBodyContent.add(astNodeCreator.createMethodCallExpression(methodCall, methodArguments));
     }
 }

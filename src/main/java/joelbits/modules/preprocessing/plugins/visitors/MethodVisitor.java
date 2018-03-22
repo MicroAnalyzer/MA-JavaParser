@@ -39,13 +39,15 @@ public final class MethodVisitor extends VoidVisitorAdapter<List<Method>> {
         List<Variable> arguments = new ArrayList<>();
         for (Parameter parameter : method.getParameters()) {
             List<ASTProtos.Modifier> argumentModifiers = typeConverter.convertModifiers(parameter.getModifiers());
-            arguments.add(astNodeCreator.createVariable(parameter.getNameAsString(), parameter.getType().asString(), argumentModifiers));
+            arguments.add(astNodeCreator
+                    .createVariable(parameter.getNameAsString(), parameter.getType().asString(), argumentModifiers));
         }
 
         List<Expression> bodyContent = new ArrayList<>();
         method.accept(new MethodBodyAssignmentVisitor(), bodyContent);
         method.accept(new MethodBodyVariableDeclarationVisitor(), bodyContent);
         method.accept(new MethodCallVisitor(), bodyContent);
+        method.accept(new MethodReturnValueVisitor(), bodyContent);
 
         methods.add(astNodeCreator.createMethod(methodModifiers, method, arguments, bodyContent));
     }

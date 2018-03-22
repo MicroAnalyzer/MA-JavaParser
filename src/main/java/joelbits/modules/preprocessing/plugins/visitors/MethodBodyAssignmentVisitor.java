@@ -15,14 +15,14 @@ public class MethodBodyAssignmentVisitor extends VoidVisitorAdapter<List<Express
     private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
 
     @Override
-    public void visit(AssignExpr assignmentExpression, List<Expression> methodBodyAssignments) {
-        super.visit(assignmentExpression, methodBodyAssignments);
+    public void visit(AssignExpr assignmentExpression, List<Expression> methodBodyContent) {
+        super.visit(assignmentExpression, methodBodyContent);
 
         String target = assignmentExpression.getTarget().toString();
         String value = assignmentExpression.getValue().toString();
         Expression assignment = astNodeCreator.
-                createMethodBodyAssignmentExpression(ExpressionType.ASSIGN, target, value);
+                createMethodBodyExpression(ExpressionType.ASSIGN, target, value);
 
-        methodBodyAssignments.add(assignment);
+        methodBodyContent.add(assignment);
     }
 }

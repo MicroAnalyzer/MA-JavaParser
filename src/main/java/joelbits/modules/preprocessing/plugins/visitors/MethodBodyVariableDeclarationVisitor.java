@@ -19,8 +19,8 @@ public final class MethodBodyVariableDeclarationVisitor extends VoidVisitorAdapt
     private ASTNodeCreator astNodeCreator = new ASTNodeCreator();
 
     @Override
-    public void visit(VariableDeclarationExpr variableDeclarationExpr, List<ASTProtos.Expression> methodBodyVariableDeclarations) {
-        super.visit(variableDeclarationExpr, methodBodyVariableDeclarations);
+    public void visit(VariableDeclarationExpr variableDeclarationExpr, List<ASTProtos.Expression> methodBodyContent) {
+        super.visit(variableDeclarationExpr, methodBodyContent);
 
         List<ASTProtos.Modifier> variableModifiers = new ArrayList<>();
         for (Modifier modifier : variableDeclarationExpr.getModifiers()) {
@@ -37,7 +37,7 @@ public final class MethodBodyVariableDeclarationVisitor extends VoidVisitorAdapt
             }
 
             Variable variable = astNodeCreator.createVariable(name, type, variableModifiers);
-            methodBodyVariableDeclarations.add(astNodeCreator.createExpression(ExpressionType.VARIABLE_DECLARATION, assignedValue, name, Collections.singletonList(variable), Collections.emptyList()));
+            methodBodyContent.add(astNodeCreator.createExpression(ExpressionType.VARIABLE_DECLARATION, assignedValue, name, Collections.singletonList(variable), Collections.emptyList()));
         }
     }
 }

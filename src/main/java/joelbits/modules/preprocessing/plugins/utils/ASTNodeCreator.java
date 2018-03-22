@@ -94,7 +94,7 @@ public class ASTNodeCreator {
                 .build();
     }
 
-    public Expression createMethodBodyAssignmentExpression(ExpressionType type, String variable, String literal) {
+    public Expression createMethodBodyExpression(ExpressionType type, String variable, String literal) {
         return Expression.newBuilder()
                 .setType(type)
                 .setVariable(variable)

@@ -10,6 +10,8 @@ import static joelbits.model.ast.protobuf.ASTProtos.Method;
 import static joelbits.model.ast.protobuf.ASTProtos.Variable;
 import static joelbits.model.ast.protobuf.ASTProtos.Declaration;
 import static joelbits.model.ast.protobuf.ASTProtos.DeclarationType;
+import static joelbits.model.ast.protobuf.ASTProtos.Statement;
+import static joelbits.model.ast.protobuf.ASTProtos.Statement.StatementType;
 import static joelbits.model.ast.protobuf.ASTProtos.Modifier;
 import static joelbits.model.ast.protobuf.ASTProtos.Modifier.ModifierType;
 import static joelbits.model.ast.protobuf.ASTProtos.Expression;
@@ -45,13 +47,14 @@ public class ASTNodeCreator {
                 .build();
     }
 
-    public Method createMethod(List<Modifier> methodModifiers, MethodDeclaration method, List<Variable> arguments, List<Expression> methodBody) {
+    public Method createMethod(List<Modifier> methodModifiers, MethodDeclaration method, List<Variable> arguments, List<Expression> methodBody, List<Statement> bodyStatements) {
         return Method.newBuilder()
                 .setName(method.getNameAsString())
                 .setReturnType(createType(method.getType().asString()))
                 .addAllModifiers(methodModifiers)
                 .addAllArguments(arguments)
                 .addAllBodyContent(methodBody)
+                .addAllStatements(bodyStatements)
                 .build();
     }
 
@@ -72,25 +75,55 @@ public class ASTNodeCreator {
     public Expression createMethodCallExpression(MethodCallExpr methodCall, List<Expression> methodArguments) {
         return Expression.newBuilder()
                 .setType(ExpressionType.METHODCALL)
-                .setMethod(methodCall.getNameAsString())
+                .setMethod(methodCall.toString().substring(0, methodCall.toString().indexOf("(")))
                 .addAllMethodArguments(methodArguments)
                 .build();
     }
 
-    public Expression createMethodCallArgumentExpression(String argument) {
+    public Expression createVarDeclarationExpression(String literal, String variable, List<Variable> variables, List<Expression> arguments, List<Expression> expressions) {
+        return Expression.newBuilder()
+                .setType(ExpressionType.VARIABLE_DECLARATION)
+                .setLiteral(literal)
+                .setVariable(variable)
+                .addAllMethodArguments(arguments)
+                .addAllExpressions(expressions)
+                .build();
+    }
+
+    public Expression createArgumentExpression(String argument) {
         return Expression.newBuilder()
                 .setType(ExpressionType.OTHER)
                 .setVariable(argument)
                 .build();
     }
 
-    public Expression createExpression(ExpressionType type, String literal, String variable, List<Variable> declarations, List<Expression> arguments) {
+    public Expression createAssignmentExpression(ExpressionType type, String literal, String variable, List<Expression> expressions) {
+        return Expression.newBuilder()
+                .setType(type)
+                .setLiteral(literal)
+                .setVariable(variable)
+                .addAllExpressions(expressions)
+                .build();
+    }
+
+    public Expression createCreationExpression(String literal, String variable, List<Expression> arguments) {
+        return Expression.newBuilder()
+                .setType(ExpressionType.NEW)
+                .setLiteral(literal)
+                .setVariable(variable)
+                .addAllMethodArguments(arguments)
+                .build();
+    }
+
+    public Expression createExpression(ExpressionType type, String literal, String variable, List<Variable> declarations, List<Expression> arguments, Type newType, List<Expression> expressions) {
         return Expression.newBuilder()
                 .setType(type)
                 .setLiteral(literal)
                 .setVariable(variable)
                 .addAllVariableDeclarations(declarations)
                 .addAllMethodArguments(arguments)
+                .setNewType(newType)
+                .addAllExpressions(expressions)
                 .build();
     }
 
@@ -120,6 +153,47 @@ public class ASTNodeCreator {
                 .addAllModifiers(modifiers)
                 .addAllFields(allFields)
                 .addAllMethods(allMethods)
+                .build();
+    }
+
+    public Statement createReturnStatement(List<Expression> expressions) {
+        return Statement.newBuilder()
+                .setType(StatementType.RETURN)
+                .addAllExpressions(expressions)
+                .build();
+    }
+
+    public Statement createStatement(StatementType type, Expression condition, List<Statement> statements) {
+        return Statement.newBuilder()
+                .setType(type)
+                .setCondition(condition)
+                .addAllStatements(statements)
+                .build();
+    }
+
+    public Statement createBlockStatement(List<Expression> expressions, List<Statement> statements) {
+        return Statement.newBuilder()
+                .setType(StatementType.BLOCK)
+                .addAllExpressions(expressions)
+                .addAllStatements(statements)
+                .build();
+    }
+
+    public Statement createTryStatement(List<Statement> statements) {
+        return Statement.newBuilder()
+                .setType(StatementType.TRY)
+                .addAllStatements(statements)
+                .build();
+    }
+
+    public Statement createStatement(StatementType type, List<Expression> expressions, Expression condition, List<Statement> nestedStatements, List<Expression> initializations, List<Expression> updates) {
+        return Statement.newBuilder()
+                .setType(type)
+                .addAllExpressions(expressions)
+                .setCondition(condition)
+                .addAllStatements(nestedStatements)
+                .addAllInitializations(initializations)
+                .addAllUpdates(updates)
                 .build();
     }
 

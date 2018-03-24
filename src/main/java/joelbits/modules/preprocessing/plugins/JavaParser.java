@@ -44,6 +44,7 @@ public class JavaParser implements MicrobenchmarkParser {
         return astNodeCreator.createAstRoot(imports, namespaces).toByteArray();
     }
 
+
     private void loadFile(File file) throws Exception {
         clearData();
         try (FileInputStream in = new FileInputStream(file)) {

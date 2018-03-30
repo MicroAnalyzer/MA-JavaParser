@@ -12,6 +12,9 @@ import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A visitor for top-level classes and interfaces.
+ */
 public final class ClassOrInterfaceVisitor extends VoidVisitorAdapter<List<Declaration>> {
     private List<Declaration> namespaceDeclarations;
     private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();

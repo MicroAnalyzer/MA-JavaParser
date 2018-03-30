@@ -16,7 +16,8 @@ import java.io.FileInputStream;
 import java.util.*;
 
 /**
- * Loads a Java file and parses its microbenchmarks.
+ * Loads a Java file and parses its microbenchmarks. The toString() method identifies this parser plugin
+ * for the MicroAnalyzer framework.
  */
 @AutoService(MicrobenchmarkParser.class)
 public class JavaParser implements MicrobenchmarkParser {
@@ -43,7 +44,6 @@ public class JavaParser implements MicrobenchmarkParser {
         Log.info("Parsing of " + file.getName() + " completed");
         return astNodeCreator.createAstRoot(imports, namespaces).toByteArray();
     }
-
 
     private void loadFile(File file) throws Exception {
         clearData();

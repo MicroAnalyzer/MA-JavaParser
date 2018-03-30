@@ -31,7 +31,7 @@ public final class MethodVisitor extends VoidVisitorAdapter<List<Method>> {
         List<Variable> arguments = createArguments(method);
         List<ASTProtos.Statement> bodyContent = createBody(method);
 
-        methods.add(astNodeCreator.createMethod(methodModifiers, method, arguments, Collections.emptyList(), bodyContent));
+        methods.add(astNodeCreator.createMethod(methodModifiers, method.getNameAsString(), method.getType().asString(), arguments, Collections.emptyList(), bodyContent));
     }
 
     private void createModifiers(MethodDeclaration method, List<ASTProtos.Modifier> methodModifiers) {
@@ -44,7 +44,7 @@ public final class MethodVisitor extends VoidVisitorAdapter<List<Method>> {
     private void createAnnotations(MethodDeclaration method, List<ASTProtos.Modifier> methodModifiers) {
         for (AnnotationExpr annotationExpr : method.getAnnotations()) {
             List<String> annotationMembers = typeConverter.convertAnnotationMembers(annotationExpr);
-            methodModifiers.add(astNodeCreator.createAnnotationModifier(annotationExpr, annotationMembers));
+            methodModifiers.add(astNodeCreator.createAnnotationModifier(annotationExpr.getNameAsString(), annotationMembers));
         }
     }
 

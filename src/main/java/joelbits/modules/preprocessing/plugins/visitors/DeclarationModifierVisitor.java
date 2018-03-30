@@ -9,7 +9,10 @@ import joelbits.modules.preprocessing.plugins.utils.TypeConverter;
 
 import java.util.List;
 
-public class DeclarationModifierVisitor extends VoidVisitorAdapter<List<Modifier>> {
+/**
+ * A visitor for top-level declarations in a class.
+ */
+public final class DeclarationModifierVisitor extends VoidVisitorAdapter<List<Modifier>> {
     private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
     private final TypeConverter typeConverter = new TypeConverter();
 
@@ -17,7 +20,7 @@ public class DeclarationModifierVisitor extends VoidVisitorAdapter<List<Modifier
     public void visit(ClassOrInterfaceDeclaration declaration, List<Modifier> modifiers) {
         for (AnnotationExpr topLevelAnnotation : declaration.getAnnotations()) {
             List<String> membersAndValues = typeConverter.convertAnnotationMembers(topLevelAnnotation);
-            modifiers.add(astNodeCreator.createAnnotationModifier(topLevelAnnotation, membersAndValues));
+            modifiers.add(astNodeCreator.createAnnotationModifier(topLevelAnnotation.getNameAsString(), membersAndValues));
         }
 
         for (com.github.javaparser.ast.Modifier topLevelModifier : declaration.getModifiers()) {

@@ -10,10 +10,10 @@ import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
 import java.util.*;
 
 /**
- * A visitor for statements inside a method.
+ * A visitor for statements inside a method body.
  */
 public final class MethodBodyStatementVisitor extends VoidVisitorAdapter<List<ASTProtos.Statement>> {
-    private ASTNodeCreator astNodeCreator = new ASTNodeCreator();
+    private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
 
     @Override
     public void visit(IfStmt statement, List<ASTProtos.Statement> methodBodyContent) {

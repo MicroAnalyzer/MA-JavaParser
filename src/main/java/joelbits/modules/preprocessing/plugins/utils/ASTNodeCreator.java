@@ -1,9 +1,6 @@
 package joelbits.modules.preprocessing.plugins.utils;
 
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.expr.AnnotationExpr;
-import com.github.javaparser.ast.expr.MethodCallExpr;
 
 import static joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType;
 import static joelbits.model.ast.protobuf.ASTProtos.Method;
@@ -23,7 +20,11 @@ import static joelbits.model.ast.protobuf.ASTProtos.Namespace;
 import java.util.Arrays;
 import java.util.List;
 
-public class ASTNodeCreator {
+/**
+ * Creates the Protocol Buffer representation of the AST nodes used within MicroAnalyzer. The created PB
+ * objects contains the parsed data and are later converted to their binary form for persistence.
+ */
+public final class ASTNodeCreator {
     public Variable createVariable(String name, String type, List<Modifier> argumentModifiers) {
         return Variable.newBuilder()
                 .setType(createType(type))
@@ -39,19 +40,19 @@ public class ASTNodeCreator {
                 .build();
     }
 
-    public Modifier createAnnotationModifier(AnnotationExpr annotationExpr, List<String> membersAndValues) {
+    public Modifier createAnnotationModifier(String annotation, List<String> membersAndValues) {
         return Modifier.newBuilder()
                 .setType(ModifierType.ANNOTATION)
-                .setName(annotationExpr.getNameAsString())
+                .setName(annotation)
                 .addAllMembersAndValues(membersAndValues)
                 .build();
     }
 
-    public Method createMethod(List<Modifier> methodModifiers, MethodDeclaration method, List<Variable> arguments, List<Expression> methodBody, List<Statement> bodyStatements) {
+    public Method createMethod(List<Modifier> modifiers, String name, String type, List<Variable> arguments, List<Expression> methodBody, List<Statement> bodyStatements) {
         return Method.newBuilder()
-                .setName(method.getNameAsString())
-                .setReturnType(createType(method.getType().asString()))
-                .addAllModifiers(methodModifiers)
+                .setName(name)
+                .setReturnType(createType(type))
+                .addAllModifiers(modifiers)
                 .addAllArguments(arguments)
                 .addAllBodyContent(methodBody)
                 .addAllStatements(bodyStatements)
@@ -72,10 +73,10 @@ public class ASTNodeCreator {
         return builder.setName(modifierName).setType(type).build();
     }
 
-    public Expression createMethodCallExpression(MethodCallExpr methodCall, List<Expression> methodArguments) {
+    public Expression createMethodCallExpression(String methodCall, List<Expression> methodArguments) {
         return Expression.newBuilder()
                 .setType(ExpressionType.METHODCALL)
-                .setMethod(methodCall.toString().substring(0, methodCall.toString().indexOf("(")))
+                .setMethod(methodCall.substring(0, methodCall.indexOf("(")))
                 .addAllMethodArguments(methodArguments)
                 .build();
     }

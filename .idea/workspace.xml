@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e76df678-0ca7-4593-a434-41ca78b31ea6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyExpressionVisitor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyStatementVisitor.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyAssignmentVisitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyVariableDeclarationVisitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodCallVisitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodReturnValueVisitor.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/repo/joelbits/mining-model/1.0/mining-model.jar" afterPath="$PROJECT_DIR$/repo/joelbits/mining-model/1.0/mining-model.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/JavaParser.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/JavaParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/utils/ASTNodeCreator.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/utils/ASTNodeCreator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ClassOrInterfaceVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ClassOrInterfaceVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/DeclarationModifierVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/DeclarationModifierVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/FieldVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/FieldVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ImportVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ImportVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyExpressionVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyExpressionVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyStatementVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyStatementVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/NamespaceVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/NamespaceVisitor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -28,21 +29,9 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="1241">
               <caret line="73" column="10" lean-forward="false" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaParser.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/JavaParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -50,11 +39,31 @@
       <file leaf-file-name="MethodBodyStatementVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyStatementVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2414">
-              <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassOrInterfaceVisitor.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ClassOrInterfaceVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImportVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ImportVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="12" column="82" lean-forward="true" selection-start-line="12" selection-start-column="82" selection-end-line="12" selection-end-column="82" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -70,10 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>then blo</find>
-      <find>return st</find>
-      <find>EEEEEEEEEEEEEE</find>
-      <find>String</find>
       <find>return stat</find>
       <find>left</find>
       <find>CONAN</find>
@@ -100,6 +105,10 @@
       <find>this.q</find>
       <find>new</find>
       <find>BLOCK</find>
+      <find>conanb</find>
+      <find>conan</find>
+      <find>method name</find>
+      <find>comp</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -129,9 +138,6 @@
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/parsers/JavaParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/spi/Parser.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/spi/MicrobenchmarkParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ClassOrInterfaceVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/DeclarationModifierVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/FieldVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/utils/TypeConverter.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodCallVisitor.java" />
@@ -139,11 +145,16 @@
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodReturnValueVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/StatementVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyVariableDeclarationVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/JavaParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/utils/ASTNodeCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyStatementVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyExpressionVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/utils/ASTNodeCreator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/JavaParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/FieldVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/NamespaceVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ImportVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/DeclarationModifierVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ClassOrInterfaceVisitor.java" />
       </list>
     </option>
   </component>
@@ -197,7 +208,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -256,68 +268,6 @@
             <path>
               <item name="parser-jmh" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.github.javaparser:javaparser-core:3.5.5" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="parser-jmh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.github.javaparser:javaparser-core:3.5.5" type="70bed36:NamedLibraryElementNode" />
-              <item name="javaparser-core-3.5.5.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-jmh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.github.javaparser:javaparser-core:3.5.5" type="70bed36:NamedLibraryElementNode" />
-              <item name="javaparser-core-3.5.5.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="javaparser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-jmh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.github.javaparser:javaparser-core:3.5.5" type="70bed36:NamedLibraryElementNode" />
-              <item name="javaparser-core-3.5.5.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="javaparser" type="462c0819:PsiDirectoryNode" />
-              <item name="ast" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-jmh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.github.javaparser:javaparser-core:3.5.5" type="70bed36:NamedLibraryElementNode" />
-              <item name="javaparser-core-3.5.5.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="javaparser" type="462c0819:PsiDirectoryNode" />
-              <item name="ast" type="462c0819:PsiDirectoryNode" />
-              <item name="expr" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-jmh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.github.javaparser:javaparser-core:3.5.5" type="70bed36:NamedLibraryElementNode" />
-              <item name="javaparser-core-3.5.5.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="javaparser" type="462c0819:PsiDirectoryNode" />
-              <item name="ast" type="462c0819:PsiDirectoryNode" />
-              <item name="stmt" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-jmh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.github.javaparser:javaparser-core:3.5.5" type="70bed36:NamedLibraryElementNode" />
-              <item name="javaparser-core-3.5.5.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="javaparser" type="462c0819:PsiDirectoryNode" />
-              <item name="ast" type="462c0819:PsiDirectoryNode" />
-              <item name="type" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-jmh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.github.javaparser:javaparser-core:3.5.5" type="70bed36:NamedLibraryElementNode" />
-              <item name="javaparser-core-3.5.5.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="javaparser" type="462c0819:PsiDirectoryNode" />
-              <item name="ast" type="462c0819:PsiDirectoryNode" />
-              <item name="visitor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-jmh" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="Maven: joelbits:mining-model:1.0" type="70bed36:NamedLibraryElementNode" />
             </path>
             <path>
@@ -364,13 +314,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../model-library" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RunDashboard">
@@ -533,11 +482,11 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3282313" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282313" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="FAQ Robot" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30257186" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3161876" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="MaxCompute Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -659,32 +608,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/InjectionParserModule.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ImportVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/NamespaceVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/utils/TypeConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="9" column="69" lean-forward="false" selection-start-line="9" selection-start-column="69" selection-end-line="9" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="73" column="10" lean-forward="false" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -808,120 +735,106 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyVariableDeclarationVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodCallVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodReturnValueVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyAssignmentVisitor.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/joelbits/mining-model/1.0/mining-model-1.0.jar!/joelbits/model/ast/protobuf/ASTProtos.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
-          <caret line="5906" column="42" lean-forward="false" selection-start-line="5906" selection-start-column="42" selection-end-line="5906" selection-end-column="42" />
+          <caret line="5536" column="44" lean-forward="false" selection-start-line="5536" selection-start-column="44" selection-end-line="5536" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyVariableDeclarationVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/JavaParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        <state relative-caret-position="223">
+          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/utils/ASTNodeCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="64" lean-forward="true" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodCallVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="23" column="47" lean-forward="false" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodReturnValueVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyExpressionVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="12" column="55" lean-forward="true" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
+          <caret line="17" column="50" lean-forward="true" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/FieldVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyAssignmentVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        <state relative-caret-position="170">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/utils/ASTNodeCreator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4080">
-          <caret line="240" column="1" lean-forward="true" selection-start-line="240" selection-start-column="1" selection-end-line="240" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyExpressionVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+        <state relative-caret-position="187">
+          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/DeclarationModifierVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ClassOrInterfaceVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="52" lean-forward="true" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/MethodBodyStatementVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2414">
-          <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/JavaParser.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1241">
+          <caret line="73" column="10" lean-forward="false" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/NamespaceVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ImportVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="12" column="82" lean-forward="true" selection-start-line="12" selection-start-column="82" selection-end-line="12" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/plugins/visitors/ClassOrInterfaceVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>

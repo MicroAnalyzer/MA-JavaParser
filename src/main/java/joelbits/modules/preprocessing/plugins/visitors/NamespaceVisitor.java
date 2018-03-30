@@ -7,6 +7,9 @@ import joelbits.model.ast.protobuf.ASTProtos.Namespace;
 
 import java.util.List;
 
+/**
+ * A visitor for namespaces in a class.
+ */
 public final class NamespaceVisitor extends VoidVisitorAdapter<List<Declaration>> {
     private final List<Namespace> namespaces;
 

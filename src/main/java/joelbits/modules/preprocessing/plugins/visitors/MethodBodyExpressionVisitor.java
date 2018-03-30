@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * A visitor parsing data about each method invocation performed inside a specific method.
+ * A visitor for expressions inside a method body.
  */
 public final class MethodBodyExpressionVisitor extends VoidVisitorAdapter<List<ASTProtos.Expression>> {
     private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
@@ -160,6 +160,6 @@ public final class MethodBodyExpressionVisitor extends VoidVisitorAdapter<List<A
             argument.accept(new MethodBodyExpressionVisitor(), methodArguments);
         }
 
-        methodBodyContent.add(astNodeCreator.createMethodCallExpression(methodCall, methodArguments));
+        methodBodyContent.add(astNodeCreator.createMethodCallExpression(methodCall.toString(), methodArguments));
     }
 }

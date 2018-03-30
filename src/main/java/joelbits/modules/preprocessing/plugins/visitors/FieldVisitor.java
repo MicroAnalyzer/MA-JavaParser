@@ -11,7 +11,10 @@ import joelbits.modules.preprocessing.plugins.utils.TypeConverter;
 
 import java.util.List;
 
-public class FieldVisitor extends VoidVisitorAdapter<List<Variable>> {
+/**
+ * A visitor for top-level fields in a class.
+ */
+public final class FieldVisitor extends VoidVisitorAdapter<List<Variable>> {
     private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
     private final TypeConverter typeConverter = new TypeConverter();
 
@@ -21,7 +24,7 @@ public class FieldVisitor extends VoidVisitorAdapter<List<Variable>> {
 
         for (AnnotationExpr annotationExpr : field.getAnnotations()) {
             List<String> annotationMembers = typeConverter.convertAnnotationMembers(annotationExpr);
-            modifiers.add(astNodeCreator.createAnnotationModifier(annotationExpr, annotationMembers));
+            modifiers.add(astNodeCreator.createAnnotationModifier(annotationExpr.getNameAsString(), annotationMembers));
         }
 
         for (VariableDeclarator test : field.getVariables()) {

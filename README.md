@@ -1,7 +1,6 @@
 # JavaParser
 
-A Java file parser plug-in for MicroAnalyzer. The parser is used to convert a Java file into the entity domain model used
-by MicroAnalyzer.
+A Java file parser plug-in for [MicroAnalyzer](https://github.com/joelBIT/MicroAnalyzer). The parser is used to convert a Java file into the binary representation of the entity domain model used by MicroAnalyzer.
 
 ## How To Compile Sources
 

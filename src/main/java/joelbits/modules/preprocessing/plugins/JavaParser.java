@@ -6,7 +6,7 @@ import static joelbits.model.ast.protobuf.ASTProtos.Namespace;
 import static joelbits.model.ast.protobuf.ASTProtos.Declaration;
 
 import com.google.auto.service.AutoService;
-import joelbits.modules.preprocessing.plugins.spi.LanguageParser;
+import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import joelbits.modules.preprocessing.plugins.types.ParserType;
 import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
 import joelbits.modules.preprocessing.plugins.visitors.*;
@@ -19,8 +19,8 @@ import java.util.*;
  * Loads a Java file and parses its microbenchmarks. The toString() method identifies this parser plugin
  * for the MicroAnalyzer framework.
  */
-@AutoService(LanguageParser.class)
-public class JavaParser implements LanguageParser {
+@AutoService(FileParser.class)
+public class JavaParser implements FileParser {
     private CompilationUnit compilationUnit;
     private final List<String> imports = new ArrayList<>();
     private final List<Namespace> namespaces = new ArrayList<>();

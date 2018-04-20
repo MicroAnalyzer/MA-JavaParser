@@ -56,7 +56,6 @@ public final class MethodBodyExpressionVisitor extends VoidVisitorAdapter<List<A
         String index = expression.getIndex().toString();
         methodBodyContent.add(astNodeCreator
                 .createMethodBodyExpression(ExpressionType.OTHER, arrayName, index));
-
     }
 
     @Override

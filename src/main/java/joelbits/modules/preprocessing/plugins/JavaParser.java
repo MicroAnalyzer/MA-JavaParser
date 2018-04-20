@@ -27,6 +27,10 @@ public class JavaParser implements FileParser {
     private final List<Declaration> nestedDeclarations = new ArrayList<>();
     private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
 
+//    public static void main(String[] args) throws Exception {
+//        new JavaParser().parse(new File("C:\\Users\\joel\\Desktop\\projects\\framework\\JCTools\\JCTools\\jctools-benchmarks\\src\\main\\java\\org\\jctools\\jmh\\throughput\\MpqDrainFillThroughputBackoffNone.java"));
+//    }
+
     /**
      *  Receives a snapshot of a file and loads that file in the parser. Then parses the class into an AST.
      *

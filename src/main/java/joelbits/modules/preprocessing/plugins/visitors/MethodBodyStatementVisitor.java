@@ -36,8 +36,18 @@ public final class MethodBodyStatementVisitor extends VoidVisitorAdapter<List<AS
             statement.getElseStmt().get().accept(new MethodBodyStatementVisitor(), ifBody);
         }
         if (statement.hasThenBlock()) {
-            statement.getThenStmt().accept(new MethodBodyStatementVisitor(), ifBody);
+            List<ASTProtos.Expression> statementContent = new ArrayList<>();
+            List<ASTProtos.Statement> statements = new ArrayList<>();
+            for (Statement stmt : statement.getThenStmt().asBlockStmt().getStatements()) {
+                if (stmt.isExpressionStmt()) {
+                    stmt.asExpressionStmt().accept(new MethodBodyExpressionVisitor(), statementContent);
+                } else {
+                    stmt.accept(new MethodBodyStatementVisitor(), statements);
+                }
+            }
+            ifBody.add(astNodeCreator.createBlockStatement(statementContent, statements));
         }
+
         return ifBody;
     }
 

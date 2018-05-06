@@ -8,8 +8,8 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import joelbits.model.ast.protobuf.ASTProtos;
 import joelbits.model.ast.protobuf.ASTProtos.Method;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
-import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
 import joelbits.modules.preprocessing.plugins.utils.TypeConverter;
+import joelbits.modules.preprocessing.utils.ASTNodeCreator;
 
 import java.util.ArrayList;
 import java.util.Collections;

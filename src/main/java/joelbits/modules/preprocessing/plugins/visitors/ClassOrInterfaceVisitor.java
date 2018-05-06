@@ -3,11 +3,13 @@ package joelbits.modules.preprocessing.plugins.visitors;
 import com.github.javaparser.ast.body.BodyDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+import joelbits.model.ast.protobuf.ASTProtos.DeclarationType;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier;
 import joelbits.model.ast.protobuf.ASTProtos.Declaration;
 import joelbits.model.ast.protobuf.ASTProtos.Method;
-import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
+import joelbits.modules.preprocessing.plugins.utils.TypeConverter;
+import joelbits.modules.preprocessing.utils.ASTNodeCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.List;
 public final class ClassOrInterfaceVisitor extends VoidVisitorAdapter<List<Declaration>> {
     private List<Declaration> namespaceDeclarations;
     private final ASTNodeCreator astNodeCreator = new ASTNodeCreator();
+    private final TypeConverter typeConverter = new TypeConverter();
 
     public ClassOrInterfaceVisitor() {}
 
@@ -45,11 +48,12 @@ public final class ClassOrInterfaceVisitor extends VoidVisitorAdapter<List<Decla
         List<Modifier> modifiers = new ArrayList<>();
         declaration.accept(new DeclarationModifierVisitor(), modifiers);
 
+        DeclarationType type = typeConverter.getDeclarationType(declaration);
         if (declaration.isTopLevelType()) {
-            namespaceDeclarations.add(astNodeCreator.createNamespaceDeclaration(declaration, allFields, allMethods, modifiers, nestedDeclarations));
+            namespaceDeclarations.add(astNodeCreator.createNamespaceDeclaration(declaration.getNameAsString(), type, allFields, allMethods, modifiers, nestedDeclarations));
             nestedDeclarations.clear();
         } else {
-            nestedDeclarations.add(astNodeCreator.createNestedDeclaration(declaration, allFields, allMethods, modifiers));
+            nestedDeclarations.add(astNodeCreator.createNestedDeclaration(declaration.getNameAsString(), type, allFields, allMethods, modifiers));
         }
     }
 }

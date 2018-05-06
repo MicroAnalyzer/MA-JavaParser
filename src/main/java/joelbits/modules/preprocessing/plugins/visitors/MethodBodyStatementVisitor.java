@@ -5,7 +5,7 @@ import com.github.javaparser.ast.stmt.*;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import joelbits.model.ast.protobuf.ASTProtos;
 import joelbits.model.ast.protobuf.ASTProtos.Statement.StatementType;
-import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
+import joelbits.modules.preprocessing.utils.ASTNodeCreator;
 
 import java.util.*;
 

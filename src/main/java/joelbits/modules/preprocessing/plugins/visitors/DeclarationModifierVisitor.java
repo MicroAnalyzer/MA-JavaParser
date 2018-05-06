@@ -4,8 +4,8 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier;
-import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
 import joelbits.modules.preprocessing.plugins.utils.TypeConverter;
+import joelbits.modules.preprocessing.utils.ASTNodeCreator;
 
 import java.util.List;
 

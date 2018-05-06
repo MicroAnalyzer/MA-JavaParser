@@ -2,6 +2,7 @@ package joelbits.modules.preprocessing.plugins.utils;
 
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MemberValuePair;
 import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
@@ -88,5 +89,21 @@ public final class TypeConverter {
             memberName = "";
         }
         return memberName;
+    }
+
+    public ASTProtos.DeclarationType getDeclarationType(ClassOrInterfaceDeclaration declaration) {
+        if (declaration.isInterface()) {
+            return ASTProtos.DeclarationType.INTERFACE;
+        } else if (declaration.isAnnotationDeclaration()) {
+            return ASTProtos.DeclarationType.ANNOTATION;
+        } else if (declaration.isEnumDeclaration()) {
+            return ASTProtos.DeclarationType.ENUM;
+        } else if (declaration.isGeneric()) {
+            return ASTProtos.DeclarationType.GENERIC;
+        } else if (declaration.isInnerClass() || declaration.isLocalClassDeclaration() || declaration.isClassOrInterfaceDeclaration()) {
+            return ASTProtos.DeclarationType.CLASS;
+        }
+
+        return ASTProtos.DeclarationType.OTHER;
     }
 }

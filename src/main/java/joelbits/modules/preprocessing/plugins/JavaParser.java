@@ -8,8 +8,8 @@ import static joelbits.model.ast.protobuf.ASTProtos.Declaration;
 import com.google.auto.service.AutoService;
 import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import joelbits.modules.preprocessing.plugins.types.ParserType;
-import joelbits.modules.preprocessing.plugins.utils.ASTNodeCreator;
 import joelbits.modules.preprocessing.plugins.visitors.*;
+import joelbits.modules.preprocessing.utils.ASTNodeCreator;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +20,7 @@ import java.util.*;
  * for the MicroAnalyzer framework.
  */
 @AutoService(FileParser.class)
-public class JavaParser implements FileParser {
+public final class JavaParser implements FileParser {
     private CompilationUnit compilationUnit;
     private final List<String> imports = new ArrayList<>();
     private final List<Namespace> namespaces = new ArrayList<>();
